@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jorgelina Fatala — Diagnóstico Financiero</title>
+  <meta name="description" content="Dejá de improvisar con tu dinero. Diagnóstico financiero consultivo para ordenar, proteger y hacer crecer tu patrimonio con un plan claro." />
+
+  <!-- Optional: nicer system font stack -->
+  <style>
+    :root{
+      --bg: #0d0d0d;
+      --panel: rgba(255,255,255,0.06);
+      --panel2: rgba(255,255,255,0.03);
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.78);
+      --muted2: rgba(255,255,255,0.62);
+      --border: rgba(255,255,255,0.14);
+      --shadow: 0 18px 60px rgba(0,0,0,0.55);
+      --radius: 18px;
+      --maxw: 1060px;
+      --pad: clamp(18px, 3.2vw, 34px);
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin: 0;
+      background: radial-gradient(1200px 700px at 18% 10%, rgba(255,255,255,0.08), transparent 60%),
+                  radial-gradient(900px 600px at 85% 30%, rgba(255,255,255,0.06), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+      letter-spacing: 0.2px;
+    }
+
+    a{ color: inherit; }
+    .wrap{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 34px var(--pad) 56px;
+    }
+
+    .topbar{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 10px 0 26px;
+    }
+
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .mark{
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      font-weight: 700;
+    }
+
+    .brand .name{
+      display: grid;
+      line-height: 1.1;
+    }
+    .brand .name strong{ font-size: 14px; letter-spacing: 0.6px; }
+    .brand .name span{ font-size: 12px; color: var(--muted2); margin-top: 2px; }
+
+    .pill{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 12px;
+      text-decoration: none;
+      transition: transform 120ms ease, background 120ms ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pill:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.06); }
+
+    .hero{
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 22px;
+      align-items: stretch;
+      margin-top: 8px;
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow);
+    }
+
+    .hero-main{
+      padding: clamp(22px, 3.6vw, 42px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main:before{
+      content:"";
+      position:absolute;
+      inset:-120px -120px auto auto;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.14), transparent 60%);
+      filter: blur(0px);
+      transform: rotate(12deg);
+      pointer-events: none;
+    }
+
+    h1{
+      margin: 0 0 10px;
+      font-size: clamp(30px, 3.6vw, 48px);
+      line-height: 1.06;
+      letter-spacing: -0.8px;
+    }
+
+    .sub{
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: clamp(14px, 1.35vw, 18px);
+      max-width: 58ch;
+    }
+
+    .mini{
+      margin: 0 0 22px;
+      color: var(--muted2);
+      font-size: 14px;
+      max-width: 62ch;
+    }
+
+    .cta-row{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      font-weight: 650;
+      letter-spacing: 0.2px;
+      transition: transform 120ms ease, opacity 120ms ease, background 120ms ease;
+      user-select: none;
+    }
+
+    .btn-primary{
+      background: #ffffff;
+      color: #000;
+    }
+    .btn-primary:hover{ transform: translateY(-1px); opacity: 0.95; }
+
+    .btn-ghost{
+      background: rgba(255,255,255,0.05);
+      border-color: var(--border);
+      color: var(--text);
+    }
+    .btn-ghost:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.07); }
+
+    .trust{
+      margin-top: 18px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: var(--muted2);
+      font-size: 12px;
+    }
+    .trust span{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .hero-side{
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .side-box{
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .side-title{
+      margin: 0 0 6px;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .side-big{
+      margin: 0 0 8px;
+      font-size: 16px;
+      font-weight: 650;
+    }
+
+    .side-list{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted2);
+      font-size: 13px;
+    }
+    .side-list li{ margin: 6px 0; }
+
+    section{
+      margin-top: 22px;
+    }
+
+    .grid2{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .section-card{
+      padding: 22px;
+    }
+
+    h2{
+      margin: 0 0 10px;
+      font-size: 20px;
+      letter-spacing: -0.3px;
+    }
+
+    p{
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    .bullets{
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .bullets li{ margin: 8px 0; }
+
+    .steps{
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .step{
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .step h3{
+      margin: 0 0 6px;
+      font-size: 15px;
+      letter-spacing: -0.2px;
+    }
+    .step p{ margin: 0; color: var(--muted2); }
+
+    .filter{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .ok, .nope{
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size: 12px;
+      color: var(--muted2);
+      border: 1px solid rgba(255,255,255,0.10);
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 10px;
+    }
+
+    .profile{
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .avatar{
+      width: 110px;
+      height: 110px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.14), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      color: rgba(255,255,255,0.65);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .profile small{
+      color: var(--muted2);
+      display: block;
+      margin-top: 6px;
+      font-size: 12px;
+    }
+
+    .faq details{
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-top: 10px;
+    }
+    .faq summary{
+      cursor: pointer;
+      font-weight: 650;
+      color: rgba(255,255,255,0.9);
+    }
+    .faq p{ margin-top: 10px; color: var(--muted2); }
+
+    .final{
+      padding: 26px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    }
+
+    .final h2{
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .foot{
+      margin-top: 22px;
+      color: var(--muted2);
+      font-size: 12px;
+      text-align: center;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 920px){
+      .hero{ grid-template-columns: 1fr; }
+      .grid2{ grid-template-columns: 1fr; }
+      .filter{ grid-template-columns: 1fr; }
+      .profile{ grid-template-columns: 1fr; }
+      .avatar{ width: 100%; height: 130px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- =========================
+       CONFIG: REEMPLAZAR ESTO
+       ========================= -->
+  <script>
+    // 1) Reemplazá el número en formato internacional SIN "+" ni espacios.
+    // Ej: Argentina Córdoba: 5493512345678
+    const WHATSAPP_NUMBER = "549XXXXXXXXXX";
+
+    // 2) Opcional: si querés un link secundario visible (no necesario).
+    const CALENDLY_LINK = "";
+
+    // Mensaje prearmado (con filtro suave)
+    const WA_MESSAGE =
+      "Hola Jorgelina, quiero agendar una reunión de diagnóstico financiero. " +
+      "Tengo ingresos estables y quiero ordenar mi situación. " +
+      "✅ Me interesa un plan claro (no 'plata rápida'). " +
+      "¿Podemos coordinar?";
+
+    function waLink() {
+      const base = "https://wa.me/" + WHATSAPP_NUMBER;
+      const text = encodeURIComponent(WA_MESSAGE);
+      return base + "?text=" + text;
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      // Set WhatsApp links
+      document.querySelectorAll("[data-wa]").forEach(a => a.href = waLink());
+
+      // Set Calendly link (optional)
+      if (CALENDLY_LINK) {
+        document.querySelectorAll("[data-calendly]").forEach(a => {
+          a.href = CALENDLY_LINK;
+          a.style.display = "inline-flex";
+        });
+      } else {
+        document.querySelectorAll("[data-calendly]").forEach(a => {
+          a.style.display = "none";
+        });
+      }
+    });
+  </script>
+
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="#inicio" aria-label="Inicio">
+        <div class="mark">JF</div>
+        <div class="name">
+          <strong>Jorgelina Fatala</strong>
+          <span>Contadora · Asesoría Financiera Consultiva</span>
+        </div>
+      </a>
+
+      <a class="pill" data-wa href="#" aria-label="Agendar por WhatsApp">
+        <span>💬</span> Agendar por WhatsApp
+      </a>
+    </div>
+
+    <!-- HERO -->
+    <div id="inicio" class="hero">
+      <div class="card hero-main">
+        <h1>Dejá de improvisar con tu dinero.</h1>
+        <p class="sub">Si hoy ganás bien pero no tenés un plan claro, no estás creciendo: estás sobreviviendo.</p>
+        <p class="mini">
+          Te acompaño a ordenar, proteger y hacer crecer tu patrimonio con un plan financiero diseñado para tu realidad.
+          Sin presión. Sin promesas irreales. Con claridad.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" data-wa href="#" aria-label="Agendar diagnóstico por WhatsApp">
+            Agendar diagnóstico por WhatsApp <span aria-hidden="true">→</span>
+          </a>
+
+          <a class="btn btn-ghost" data-calendly href="#" aria-label="Ver Calendly (opcional)">
+            Ver agenda <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="trust" aria-label="Puntos de confianza">
+          <span>🧭 Proceso consultivo</span>
+          <span>🧾 Plan claro y entendible</span>
+          <span>🛡️ Orden + protección + estrategia</span>
+        </div>
+      </div>
+
+      <div class="card hero-side" aria-label="Panel lateral">
+        <div class="side-box">
+          <div class="side-title">Ideal si</div>
+          <div class="side-big">Ingresos estables o en crecimiento</div>
+          <ul class="side-list">
+            <li>Querés ordenarte de verdad</li>
+            <li>Estás dispuesto a mirar tus números</li>
+            <li>Te importa el largo plazo</li>
+          </ul>
+        </div>
+
+        <div class="side-box">
+          <div class="side-title">No es para</div>
+          <div class="side-big">“Plata rápida” o cero compromiso</div>
+          <ul class="side-list">
+            <li>Promesas mágicas</li>
+            <li>No querer organizarse</li>
+            <li>“Compro dólares y listo”</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- IDENTIFICACIÓN -->
+    <section class="card section-card" aria-label="Identificación">
+      <h2>No es falta de dinero. Es falta de orden.</h2>
+      <p>Tal vez te pasa algo de esto:</p>
+      <ul class="bullets">
+        <li>Tenés ingresos todos los meses, pero no sabés cuánto realmente te queda.</li>
+        <li>Ahorrás “cuando podés”, pero sin sistema.</li>
+        <li>Tenés dólares guardados o inversiones sueltas sin estrategia.</li>
+        <li>No sabés si estás avanzando o simplemente facturando más.</li>
+        <li>Te preocupa qué pasaría si mañana tu ingreso principal se corta.</li>
+      </ul>
+      <p style="margin-top:12px;">
+        Si te sentís identificado, es normal. La mayoría de las personas sube de nivel en ingresos…
+        pero nunca sube de nivel en organización.
+      </p>
+    </section>
+
+    <!-- POSICIONAMIENTO + PROCESO -->
+    <section class="grid2" aria-label="Proceso">
+      <div class="card section-card">
+        <div class="tag">✅ Consultivo</div>
+        <h2>No vendo productos. Diseño planes financieros.</h2>
+        <p>
+          Mi trabajo no es venderte algo aislado. Es entender tu situación completa y ayudarte a tomar decisiones con claridad.
+        </p>
+        <p>
+          Primero escuchamos. Después analizamos. Recién al final se propone un camino (si tiene sentido para vos).
+        </p>
+      </div>
+
+      <div class="card section-card">
+        <div class="tag">🧩 Simple</div>
+        <h2>¿Cómo funciona?</h2>
+
+        <div class="steps">
+          <div class="step">
+            <h3>Paso 1 — Diagnóstico financiero</h3>
+            <p>Ingresos · gastos · capacidad de ahorro · riesgos · objetivos. Te vas con claridad sobre lo que hoy está desordenado.</p>
+          </div>
+
+          <div class="step">
+            <h3>Paso 2 — Plan financiero personalizado</h3>
+            <p>Un plan entendible para ordenar tu mes a mes, proteger lo construido y avanzar con estrategia hacia tus objetivos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILTRO -->
+    <section class="card section-card" aria-label="Filtro">
+      <h2>Para quién es (y para quién no)</h2>
+      <p>Esto nos ayuda a respetar tu tiempo y el mío.</p>
+
+      <div class="filter">
+        <div class="ok">
+          <div class="tag">✔ Es para vos si</div>
+          <ul class="bullets" style="margin-top:0;">
+            <li>Tenés ingresos estables o en crecimiento.</li>
+            <li>Querés ordenarte de verdad (sin vivir ajustado).</li>
+            <li>Estás dispuesto a ver tus números con claridad.</li>
+            <li>Te importa construir a 5–10 años.</li>
+          </ul>
+        </div>
+
+        <div class="nope">
+          <div class="tag">✘ No es para vos si</div>
+          <ul class="bullets" style="margin-top:0;">
+            <li>Buscás “ganancias rápidas”.</li>
+            <li>No querés organizarte ni cambiar hábitos.</li>
+            <li>Querés discutir todo sin ejecutar.</li>
+            <li>Solo querés “comprar dólares y listo”.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cta-row" style="margin-top:16px;">
+        <a class="btn btn-primary" data-wa href="#" aria-label="Agendar por WhatsApp desde filtro">
+          Quiero agendar mi diagnóstico <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- PERFIL -->
+    <section class="card section-card" aria-label="Sobre Jorgelina">
+      <div class="profile">
+        <!-- Reemplazá esto por una foto (en Carrd ponés imagen). Acá queda placeholder -->
+        <div class="avatar" aria-label="Foto de perfil">
+          FOTO
+        </div>
+
+        <div>
+          <h2>Hola, soy Jorgelina.</h2>
+          <p>
+            Soy Contadora y Asesora Financiera. Trabajo con personas y familias que quieren dejar de improvisar y empezar a tomar decisiones con un plan.
+          </p>
+          <p>
+            Mi enfoque es simple: <strong>orden primero</strong>, <strong>protección después</strong>, y <strong>crecimiento con estrategia</strong>.
+            La tranquilidad financiera no es suerte. Es planificación.
+          </p>
+
+          <div class="cta-row" style="margin-top: 10px;">
+            <a class="btn btn-ghost" data-wa href="#" aria-label="Hablar por WhatsApp">
+              Hablar por WhatsApp <span aria-hidden="true">💬</span>
+            </a>
+          </div>
+
+          <small>Nota: La primera reunión es de diagnóstico, no de venta.</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="card section-card faq" aria-label="Preguntas frecuentes">
+      <h2>Preguntas frecuentes</h2>
+
+      <details>
+        <summary>¿Tengo que contratar algo sí o sí después?</summary>
+        <p>No. Primero hacemos el diagnóstico y el plan. Después vos decidís qué implementar, cuándo y cómo.</p>
+      </details>
+
+      <details>
+        <summary>¿Qué necesito preparar para el diagnóstico?</summary>
+        <p>Con tener una idea de tus ingresos, gastos, ahorros, deudas y objetivos alcanza. Si tenés movimientos o números más claros, mejor (pero no es obligatorio).</p>
+      </details>
+
+      <details>
+        <summary>¿Esto es para cualquier persona?</summary>
+        <p>No. Es para personas o familias con ingresos estables o en crecimiento, que realmente quieren ordenarse y están dispuestas a mirar sus números.</p>
+      </details>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="card final" aria-label="Cierre">
+      <h2>El tiempo pasa igual.</h2>
+      <p style="max-width: 62ch; margin: 0 auto 14px;">
+        La diferencia es si pasa con un plan o improvisando. Si sentís que es momento de ordenar tu situación financiera,
+        el primer paso es una reunión de diagnóstico.
+      </p>
+
+      <div class="cta-row" style="justify-content:center;">
+        <a class="btn btn-primary" data-wa href="#" aria-label="Agendar diagnóstico WhatsApp final">
+          Agendar diagnóstico por WhatsApp <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="foot">
+        © <span id="y"></span> Jorgelina Fatala · Asesoría Financiera Consultiva
+      </div>
+      <script>
+        document.getElementById("y").textContent = new Date().getFullYear();
+      </script>
+    </section>
+  </div>
+</body>
+</html>
